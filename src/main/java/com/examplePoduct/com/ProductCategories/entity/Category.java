@@ -1,5 +1,6 @@
 package com.examplePoduct.com.ProductCategories.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,6 +18,7 @@ public class Category {
     private String categoryName;
 //    @ElementCollection
 @OneToMany(cascade = CascadeType.ALL)
+@JsonIgnore
 //    @OneToMany(mappedBy = "category", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Product> productList;
 
