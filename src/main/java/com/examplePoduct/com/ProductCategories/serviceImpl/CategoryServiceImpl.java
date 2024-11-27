@@ -4,10 +4,14 @@ import com.examplePoduct.com.ProductCategories.Interface.CategoryInterface;
 import com.examplePoduct.com.ProductCategories.entity.Category;
 import com.examplePoduct.com.ProductCategories.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +30,9 @@ public class CategoryServiceImpl implements CategoryInterface {
     }
 
     @Override
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> categoryList = categoryRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(categoryList);
+    public ResponseEntity<List<Category>> findAll(PageRequest paging) {
+        Page<Category> categoryList = categoryRepository.findAll(paging);
+        return ResponseEntity.status(HttpStatus.OK).body(categoryList.getContent());
     }
 
     @Override

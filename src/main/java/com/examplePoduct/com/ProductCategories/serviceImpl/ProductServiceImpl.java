@@ -7,6 +7,8 @@ import com.examplePoduct.com.ProductCategories.entity.Product;
 import com.examplePoduct.com.ProductCategories.repository.CategoryRepository;
 import com.examplePoduct.com.ProductCategories.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -30,9 +32,9 @@ public class ProductServiceImpl implements ProductInterface {
     }
 
     @Override
-    public ResponseEntity<List<Product>> findAll() {
-        List<Product> productList = productRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(productList);
+    public ResponseEntity<List<Product>> findAll(PageRequest pageRequest) {
+        Page<Product> productList = productRepository.findAll(pageRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(productList.getContent());
     }
 
     @Override

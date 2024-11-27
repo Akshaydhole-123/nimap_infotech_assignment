@@ -3,9 +3,12 @@ package com.examplePoduct.com.ProductCategories.controller;
 import com.examplePoduct.com.ProductCategories.Interface.CategoryInterface;
 import com.examplePoduct.com.ProductCategories.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
@@ -26,8 +29,11 @@ public class CategoriesController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Category>> findAll(){
-        return categoryInterface.findAll();
+    public ResponseEntity<List<Category>> findAll(@RequestParam(defaultValue = "0") int page,
+    @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "categoryId") String sortBy, @RequestParam(defaultValue = "ASC") String sortDirection){
+        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+        PageRequest pageable = PageRequest.of(page, size, sort);
+        return categoryInterface.findAll(pageable);
     }
 
     @GetMapping("/getCategory/{id}")
