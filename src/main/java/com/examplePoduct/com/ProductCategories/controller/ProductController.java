@@ -32,12 +32,12 @@ public class ProductController {
         return productInterface.findAll();
     }
 
-    @GetMapping("/getCategory/{id}")
+    @GetMapping("/getProduct/{id}")
     public ResponseEntity<Product> findByProductId(@PathVariable("id") Integer productId){
         return productInterface.findByProductId(productId);
     }
 
-    @GetMapping("/deleteCategory/{id}")
+    @GetMapping("/deleteProduct/{id}")
     public ResponseEntity<String> deleteByProductId(@PathVariable("id") Integer productId){
         return productInterface.deleteByProductId(productId);
     }
