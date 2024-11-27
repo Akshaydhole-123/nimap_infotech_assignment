@@ -41,7 +41,7 @@ public class CategoriesController {
         return categoryInterface.findByCategoryId(categoryId);
     }
 
-    @GetMapping("/deleteCategory/{id}")
+    @DeleteMapping("/deleteCategory/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable("id") Integer categoryId){
         return categoryInterface.deleteCategory(categoryId);
     }

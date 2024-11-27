@@ -23,5 +23,9 @@ public class Product {
     private String productName;
 
     @ManyToOne
+    @JoinColumn(name = "categoryId")
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JsonIgnore
+//    @JsonBackReference
     private Category category;
 }

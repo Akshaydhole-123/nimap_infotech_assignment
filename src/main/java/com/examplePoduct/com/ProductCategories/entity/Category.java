@@ -15,8 +15,9 @@ public class Category {
     private Integer categoryId;
 
     private String categoryName;
-
-    @OneToMany(mappedBy = "category", orphanRemoval = true, cascade = CascadeType.ALL)
+//    @ElementCollection
+@OneToMany(cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "category", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Product> productList;
 
     }

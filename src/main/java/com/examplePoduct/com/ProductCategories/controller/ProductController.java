@@ -42,7 +42,7 @@ public class ProductController {
         return productInterface.findByProductId(productId);
     }
 
-    @GetMapping("/deleteProduct/{id}")
+    @DeleteMapping("/deleteProduct/{id}")
     public ResponseEntity<String> deleteByProductId(@PathVariable("id") Integer productId){
         return productInterface.deleteByProductId(productId);
     }
